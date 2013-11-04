@@ -1,0 +1,39 @@
+body {
+	background-color:#3498db;
+}
+
+h1 {
+	color:white;
+	font-size:3em;
+}
+
+h1 small {
+	color:#bbb;
+}
+
+.container {
+	background-color:#2980b9;
+	margin-top:10px;
+}
+.list-group-item:hover {
+	cursor: pointer;
+	background-color:#eee;
+}
+.list-group-item:hover a {
+	text-decoration:underline;
+
+}
+.list-group-item:hover:after {
+	float:right;
+	color:#888;
+	content: "Join Game";
+
+}
+
+.list-group-item.active {
+	background-color:#9b59b6;
+
+}
+.list-group-item.active a {
+	color:white;
+}
