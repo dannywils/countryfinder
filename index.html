@@ -1,27 +1,52 @@
+<!DOCTYPE html>
 <html>
 <head>
-	<title>Text Synchronization App</title>
+	<title>GoInstant Game</title>
+	<!-- SCRIPTS -->
 	<script src="https://cdn.goinstant.net/v1/platform.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.1/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/style.css">
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false&amp;libraries=places"></script>
+	<script src="https://cdn.goinstant.net/widgets/user-list/latest/user-list.min.js"></script>
+	<script src="js/bootstrap-modalmanager.js"></script>
+	<script src="js/bootstrap-modal.js"></script>
+	<!-- CSS -->
+	<link rel="stylesheet" href="https://cdn.goinstant.net/widgets/user-list/latest/user-list.css"  type="text/css" />
+	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css" type="text/css">
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+	<link rel="stylesheet" href="css/modal.css" type="text/css">
 </head>
 <body>
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
-				<h1>goFlag <small>Capture the Flag</h1>
+				<h1>Country Finder 0.1</h1>
+				<div class="well">
+					<h3>Be faster than your friends!</h3>
+					<p>How fast can you find a random country? Join a game and find the country first to earn points!</p>
+				</div>
 				<div class="panel panel-default">
 					<div class="panel-heading"><h2>Ongoing Games</h2></div>
 					<div class="panel-body">
 						<ul class="list-group" role="menu" id="roomlist"></ul>
-						<input type="button" class="btn" value="Create new game" id="createroom"/>
+						<input type="button" class="btn btn-primary" value="Create new game" id="createroom"/>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<div id="full-width" class="modal container fade" tabindex="-1" style="display: none;">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h4 class="modal-title">Title</h4>
+		</div>
+		<div class="modal-body">
+			<span class="country"></span>
+			<div id="map-container"><span class="country"></span></div>
+		</div>
+	</div>
 	<script src="js/script.js"></script>
+	<script src="js/map.js"></script>
+	<script src="js/countries.js"></script>
 </body>
 </html>

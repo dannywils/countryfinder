@@ -31,9 +31,65 @@ h1 small {
 }
 
 .list-group-item.active {
-	background-color:#9b59b6;
-
+	background-color:#1abc9c;
 }
+
 .list-group-item.active a {
 	color:white;
+}
+
+#map-container {
+	width: 100%;
+	height: 100%;
+	min-height:500px;
+}
+
+.modal-body {
+	padding:0;
+}
+
+.modal .country {
+	display: block;
+	position: relative;
+	top: 250px;
+	margin-bottom: -60px;
+	z-index: 99999;
+	width: 100%;
+	background: rgba(52, 152, 219, 0.5);
+	padding: 10px;
+	color: white;
+	text-align: center;
+	font-size: 2em;
+	pointer-events:none;
+	transition: background 0.5s ease;
+}
+.modal .country.correct {
+	background: rgba(46, 204, 113, 0.5)
+}
+.modal .country.incorrect {
+	background: rgba(231, 76, 60, 0.5);
+}
+
+.gi-userlist.gi-override {
+	/* Add custom styles */
+}
+
+.gi-userlist.gi-override .gi-inner {
+	/* Add custom styles */
+}
+
+.gi-userlist.gi-override .gi-user {
+	/* Add custom styles */
+}
+
+.gi-userlist.gi-override .gi-avatar {
+	/* Add custom styles to the avatar container */
+}
+
+.gi-userlist.gi-override .gi-avatar-img {
+	/* Add custom styles to the avatar image */
+}
+
+.gi-userlist.gi-override .gi-color {
+	/* Add custom styles to the color container */
 }
