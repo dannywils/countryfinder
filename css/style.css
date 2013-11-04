@@ -63,6 +63,7 @@ h1 small {
 	pointer-events:none;
 	transition: background 0.5s ease;
 }
+
 .modal .country.correct {
 	background: rgba(46, 204, 113, 0.5)
 }
@@ -70,6 +71,23 @@ h1 small {
 	background: rgba(231, 76, 60, 0.5);
 }
 
+.received {
+	background: rgba(243, 156, 18, 0.5) !important;
+}
+
+@keyframes blink {
+	0% { color: red; }
+	100% { color: black; }
+}
+@-webkit-keyframes blink {
+	0% { color: red; }
+	100% { color: black; }
+}
+.blink {
+	-webkit-animation: blink 0.5s linear infinite;
+	-moz-animation: blink 0.5s linear infinite;
+	animation: blink 0.5s linear infinite;
+}
 .gi-userlist.gi-override {
 	/* Add custom styles */
 }

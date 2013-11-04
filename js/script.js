@@ -111,8 +111,11 @@ $(document).ready(function () {
 				if (value == null) {
 					newCountry();
 				}
+
 				modal.find(".modal-title small").html('');
 				var countryText = modal.find(".country");
+				var message = modal.find(".message");
+				message.removeClass("received blink");
 				countryText.text("Find the country: " + value.name);
 
 
@@ -126,10 +129,11 @@ $(document).ready(function () {
 							console.log("clicked", clickCountry);
 							if (value.code === clickCountry.short_name) {
 								countryText.addClass("correct");
+								foundCountry();
 								window.setTimeout(function(){
 									countryText.removeClass("correct");
 									newCountry();
-								}, 600);
+								}, 3000);
 
 							} else {
 								countryText.addClass("incorrect");
@@ -141,6 +145,24 @@ $(document).ready(function () {
 					});
 				});
 
+			};
+
+
+
+			var channel = currentRoom.channel('/a');
+			channel.on('message', function(msg) {
+				var message = modal.find(".message");
+				message.text(msg.msg);
+				message.addClass("received blink");
+			});
+
+			var foundCountry = function(){
+				channel.message({ time: Date.now(), msg: userName + " found the country!"}, function(err) {
+					if (err) {
+						throw err;
+					}
+					console.log("message sent");
+				});
 			};
 
 			country.watch(listener);
