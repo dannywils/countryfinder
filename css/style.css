@@ -78,10 +78,10 @@ h1 {
 }
 
 
-.correct {
+.modal .country.correct {
 	background: rgba(46, 204, 113, 0.5)
 }
-.incorrect {
+.modal .country.incorrect {
 	background: rgba(231, 76, 60, 0.5);
 }
 .received {
