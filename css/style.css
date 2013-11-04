@@ -1,14 +1,28 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:300,400|Lato:300|Arvo:600);
+
 body {
 	background-color:#3498db;
+	font-family: 'Roboto', sans-serif;
+	font-weight:400;
 }
 
 h1 {
+	font-family: 'Lato', sans-serif;
+	font-weight:300;
+	font-size:4em;
 	color:white;
-	font-size:3em;
 }
+h2,h3,h4,h5,h6 {
+	font-family: 'Roboto', serif;
+	font-weight:300;
+	border-bottom:1px dashed rgba(52, 152, 219, 0.6);
+}
+h1 {
+	color:white;
 
-h1 small {
-	color:#bbb;
+}
+* {
+	transition: background 0.3s ease;
 }
 
 .container {
@@ -31,7 +45,7 @@ h1 small {
 }
 
 .list-group-item.active {
-	background-color:#1abc9c;
+	background-color:rgba(41, 128, 185, 0.7);
 }
 
 .list-group-item.active a {
@@ -61,16 +75,15 @@ h1 small {
 	text-align: center;
 	font-size: 2em;
 	pointer-events:none;
-	transition: background 0.5s ease;
 }
 
-.modal .country.correct {
+
+.correct {
 	background: rgba(46, 204, 113, 0.5)
 }
-.modal .country.incorrect {
+.incorrect {
 	background: rgba(231, 76, 60, 0.5);
 }
-
 .received {
 	background: rgba(243, 156, 18, 0.5) !important;
 }

@@ -147,8 +147,6 @@ $(document).ready(function () {
 
 			};
 
-
-
 			var channel = currentRoom.channel('/a');
 			channel.on('message', function(msg) {
 				var message = modal.find(".message");
@@ -166,8 +164,6 @@ $(document).ready(function () {
 			};
 
 			country.watch(listener);
-
-
 
 		};
 
