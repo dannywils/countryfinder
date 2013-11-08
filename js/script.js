@@ -157,11 +157,12 @@ $(document).ready(function () {
 								foundCountry();
 								//add the points
 								//we are going to add 1 point for every player you beat
-								var points = 0
 								currentRoom.users.get(function(err, userObj, context){
-									points = Object.keys(userObj).length - 1;
+									var points = Object.keys(userObj).length - 1;
+									alert("you won " + points + " points!");
+
 								});
-								alert("you won " + points)
+
 								window.setTimeout(function(){
 									countryText.removeClass("correct");
 									newCountry();
