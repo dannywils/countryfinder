@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-	var url = 'https://goinstant.net/dannywils/goFlag';
+	var url = 'https://goinstant.net/dannywils/countryfinder';
 	var connection = new goinstant.Connection(url);
 	var currentRoom = null;
 	var userName = Math.random().toString(36).substring(7); //prompt('What is your name?');
@@ -27,29 +27,6 @@ $(document).ready(function () {
 			}
 		};
 
-		//list all the rooms once we are connected
-		connection.rooms.get(listRooms);
-
-		var joinRoom = function (roomName) {
-			if (currentRoom != null) {
-				currentRoom.leave(function (err) {
-					if (err) {
-						console.log('error while leaving the room:', err);
-					}
-				});
-			}
-			var room = connection.room(roomName);
-			currentRoom = room;
-			room.join(userObject, function (err) {
-				if (err) {
-					console.log('Error joining the room:', err);
-					return;
-				}
-				console.log('Joined the room:', room.name);
-				loadGame();
-			});
-		};
-
 		//add a room to the list
 		//passes the roomname to the callback on click
 		var addRoom = function (roomName, callback) {
@@ -62,6 +39,50 @@ $(document).ready(function () {
 			});
 			$("#roomlist").append(roomItem);
 		};
+
+		var clearRooms = function(){
+			$("#roomlist").empty();
+		};
+
+		//list all the rooms once we are connected
+		connection.rooms.get(listRooms);
+
+		var joinRoom = function(roomName, isNew) {
+			if (currentRoom != null) {
+				currentRoom.leave(function (err) {
+					if (err) {
+						console.log('error while leaving the room:', err);
+					}
+				});
+			}
+
+			//try to join the room and alert if we can't
+			try {
+				var room = connection.room(roomName);
+			}catch(err){
+				alert(err);
+				return;
+			}
+
+			currentRoom = room;
+			room.join(userObject, function (err) {
+				if (err) {
+					alert(err);
+				} else {
+					console.log('Joined the room:', room.name);
+					if(isNew){
+						clearRooms();
+						connection.rooms.get(listRooms);
+						//set a country on creation
+						room.key('country').set(countries[Math.floor(Math.random() * countries.length)]);;
+						room.leave();
+					} else {
+						loadGame();
+					}
+				}
+			});
+		};
+
 
 
 		var loadGame = function () {
@@ -96,6 +117,7 @@ $(document).ready(function () {
 			modal.on('hidden', function () {
 				$('.gi-userlist').remove();
 				$(".list-group-item.active").removeClass("active");
+				google.maps.event.clearListeners(map, 'click');
 			});
 
 			var country = currentRoom.key('country');
@@ -108,7 +130,7 @@ $(document).ready(function () {
 			var listener = function (value, context) {
 				// Triggered when any user (local or remote) performs any action (set, add, or remove)
 				// on '/foo'. Also triggered immediately with the current value of '/foo'.
-				if (value == null) {
+				if (value.name == null) {
 					newCountry();
 				}
 
@@ -126,7 +148,8 @@ $(document).ready(function () {
 					}, function (results, status) {
 						if (results !== null && results.length > 0) {
 							var clickCountry = results[results.length - 1].address_components[0];
-							console.log("clicked", clickCountry);
+							console.log("clicked", clickCountry, value.code);
+
 							if (value.code === clickCountry.short_name) {
 								countryText.addClass("correct");
 								foundCountry();
@@ -176,8 +199,7 @@ $(document).ready(function () {
 			if (roomName === null) {
 				return;
 			}
-			addRoom(roomName, joinRoom);
-			joinRoom(roomName);
+			joinRoom(roomName, true);
 		});
 	});
 });
