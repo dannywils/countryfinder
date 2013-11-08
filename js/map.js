@@ -14,6 +14,7 @@ var options = {
 	mapTypeControl: false,
 	scaleControl: true,
 	draggable: true,
+	draggableCursor:'crosshair',
 	styles: [
 	{
 		featureType: "all",

@@ -140,7 +140,7 @@ $(document).ready(function () {
 				message.removeClass("received blink");
 				countryText.text("Find the country: " + value.name);
 
-
+				google.maps.event.clearListeners(map, 'click');
 				google.maps.event.addListener(map, 'click', function(event) {
 					//console.log(event.latLng.toUrlValue(6));
 					geocoder.geocode({
@@ -149,10 +149,19 @@ $(document).ready(function () {
 						if (results !== null && results.length > 0) {
 							var clickCountry = results[results.length - 1].address_components[0];
 							console.log("clicked", clickCountry, value.code);
-
+							//we clicked the right country!!
 							if (value.code === clickCountry.short_name) {
+								//show the green success bar
 								countryText.addClass("correct");
+								//send the message
 								foundCountry();
+								//add the points
+								//we are going to add 1 point for every player you beat
+								var points = 0
+								currentRoom.users.get(function(err, userObj, context){
+									points = Object.keys(userObj).length - 1;
+								});
+								alert("you won " + points)
 								window.setTimeout(function(){
 									countryText.removeClass("correct");
 									newCountry();
